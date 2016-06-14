@@ -1,0 +1,37 @@
+#Program ini nge-parsing JSON dan menghitung jumlah commentar (count) yang ada di URL
+ 
+import json
+import urllib
+
+sample_data = 'http://python-data.dr-chuck.net/comments_42.json'
+actual_data = 'http://python-data.dr-chuck.net/comments_270777.json'
+
+data = urllib.urlopen(actual_data).read()
+info = json.loads(data)
+
+x = 0
+count = 0
+for item in info['comments']: #return semua isi comments
+	x = x + item['count'] #iterasi, dan munculin value dari count 
+	count = count + 1
+
+print 'Retrieved: ', count, 'characters'
+print 'Sum: ', x
+
+'''
+Format Data JSON
+{
+  note: "This file contains the sample data for testing",
+  comments: [
+    {
+      name: "Matthias"
+      count: 97
+    },
+    {
+      name: "Geomer"
+      count: 97
+    }
+    ...
+  ]
+}
+'''
